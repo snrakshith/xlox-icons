@@ -1,0 +1,60 @@
+{
+  "name": "@xlox/icons",
+  "version": "0.0.2",
+  "type": "module",
+  "main": "./src/index.js",
+  "sideEffects": false,
+  "license": "MIT",
+  "files": [
+    "dist/**"
+  ],
+  "exports": {
+    ".": {
+      "import": "./src/index.js",
+      "require": "./src/index.js"
+    }
+  },
+  "peerDependencies": {
+    "react": "^16.8.0  || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.8.0  || ^17.0.0 || ^18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/snrakshith/xlox-icons.git"
+  },
+  "scripts": {
+    "prebuild": "npm run clean",
+    "gen-icons": "node ./tools/icons.js",
+    "build": "npm run prebuild && npm run build:cjs && npm run build:esm",
+    "build:cjs": "tsc -p tsconfig.build.json --module commonjs --outDir dist/cjs --target es5",
+    "build:esm": "tsc -p tsconfig.build.json --module esNext --outDir dist/esm --target es6",
+    "clean": "rimraf -rf ./dist",
+    "format": "prettier --write \"**/*.{ts,tsx,json,md,mdx,css,scss,yaml,yml}\"",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
+    "types-check": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@blueprintjs/icons": "^5.10.0",
+    "@types/react": "^18.2.0",
+    "@typescript-eslint/parser": "^6.2.1",
+    "camelcase": "^8.0.0",
+    "eslint": "^8.46.0",
+    "fs-extra": "^11.2.0",
+    "prettier": "^3.0.1",
+    "react": "^18.2.0",
+    "rimraf": "6.0.1",
+    "typescript": "^5.1.6"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "printWidth": 120,
+    "tabWidth": 2,
+    "useTabs": false,
+    "trailingComma": "none",
+    "arrowParens": "avoid"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
